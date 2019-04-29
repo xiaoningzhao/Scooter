@@ -1,0 +1,54 @@
+<h3>Create Employee</h3>
+<form method="post" page="create_employee.php">
+	<div class="row gtr-uniform gtr-50">
+		<div class="col-6">
+			Employee ID<input type="text" name="employee_id" id="employee_id" value="" placeholder="Employee ID" required/>
+		</div>
+		<div class="col-6">
+			Password<input type="password" name="password" id="password" value="" placeholder="Password" required/>
+		</div>
+		<div class="col-4">
+			First Name<input type="text" name="firstname" id="firstname" value="" placeholder="First Name" required/>
+		</div>
+		<div class="col-4">
+			Last Name<input type="text" name="lastname" id="lastname" value="" placeholder="Last Name" required/>
+		</div>
+		<div class="col-4">
+			SSN<input type="text" name="ssn" id="ssn" value="" placeholder="SSN" maxlength="9" required/>
+		</div>
+		<div class="col-4">
+			Address<input type="text" name="address" id="address" value="" placeholder="Address"/>
+		</div>
+		<div class="col-4">
+			Gender<select name="gender" id="gender" required>
+						<option value="">- Gender -</option>
+						<option value="M">Male</option>
+						<option value="F">Female</option>
+						<option value="U">Unknown</option>
+					</select>
+		</div>
+		<div class="col-4">
+			Birthday<input type="text" name="birthday" id="birthday" value="" placeholder="YYYY-MM-DD"/>
+		</div>
+		<div class="col-6">
+			Job Type<select name="jobtype" id="jobtype" required>
+						<option value="">- Job Type -</option>
+						<option value="IC">IC</option>
+						<option value="Manager">Manager</option>
+					</select>
+		</div>
+		<div class="col-6">
+			Department<select name="department" id="department" required>
+						<option value="">- Department -</option>
+						<option value="d0001">Operation</option>
+						<option value="d0002">Logistic</option>
+						<option value="d0003">Maintenance</option>
+					</select>
+		</div>
+			<ul class="actions">
+				<li><input type="submit" value="Create" class="primary" /></li>
+				<li><input type="reset" value="Reset" /></li>
+			</ul>
+		</div>
+	</div>
+</form>

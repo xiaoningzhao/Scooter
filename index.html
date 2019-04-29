@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Scooter Management System</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Scooter Management System</a></h1>
+				</header>
+
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Login</h2>
+						</header>
+
+						<section>
+						<form method="post" action="login.php">
+							<div class="row gtr-uniform aln-center gtr-50">
+								<div class="col-3">
+									<input type="text" name="userid" id="userid" value="" placeholder="User ID" required />
+								</div>
+								<div class="col-3">
+									<input type="password" name="password" id="password" value="" placeholder="Password" required />
+								</div>
+								<div class="col-4">
+									<select name="loginType" id="loginType" required>
+										<option value="">- Login Type -</option>
+										<option value="Employee">Employee</option>
+										<option value="User">User</option>
+										<option value="Admin">Admin</option>
+									</select>
+								</div>
+								<div>
+									<ul class="actions">
+										<li><input type="submit" value="Login" class="primary" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</section>
+
+
+					</div>
+				</div>
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Scooter Management System Powered By Team 4.</li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
