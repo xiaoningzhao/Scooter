@@ -1,10 +1,11 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <?php
 
-	include 'session.php';
+	include '../util/session.php';
 
 	extract($_POST);
 	
-	$json_db = file_get_contents('db.json');
+	$json_db = file_get_contents('../db.json');
 	$db = json_decode($json_db, true);
 
 	$db_servername = $db['servername'];

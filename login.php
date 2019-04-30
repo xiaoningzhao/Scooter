@@ -1,3 +1,4 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <!DOCTYPE HTML>
 
 <html>
@@ -18,7 +19,7 @@
 				<div id="main" class="wrapper style1">
 					<div class="container">
 <?php
-	include 'db_connect.php';
+	include 'util/db_connect.php';
 	extract($_POST);
 
 	switch ($loginType) {

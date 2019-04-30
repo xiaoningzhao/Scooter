@@ -1,7 +1,8 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <?php
 
-	include 'session.php';
-	include 'db_connect.php';
+	include '../util/session.php';
+	include '../util/db_connect.php';
 
 	extract($_POST);
 

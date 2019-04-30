@@ -1,3 +1,4 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <?php
 	$session_login = false;
 	$session_name = "";

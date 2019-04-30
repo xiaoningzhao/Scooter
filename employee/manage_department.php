@@ -1,10 +1,11 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <h3>Employees</h3>
 <div class="table-wrapper">
-<table id="employees" page="employee_detail.php">
+<table id="employees" page="employee/employee_detail.php">
 <?php
 
-	include 'session.php';
-	include 'db_connect.php';
+	include '../util/session.php';
+	include '../util/db_connect.php';
 
 
 	if($session_department=="d0001"){

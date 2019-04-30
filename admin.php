@@ -1,5 +1,6 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <?php
-	include 'session.php';
+	include 'util/session.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -21,11 +22,11 @@
 					<nav id="nav">
 						<ul>
 							<?php echo "<li>Welcome  <b> $session_name </b></li>"; ?>
-							<?php if($session_jobtype == "Manager") echo "<li><a id='manage_department' page='manage_department.php' href='#'>Department</a></li>"; ?>
-							<li><a id="create_user" page="create_user.html" href="#">Create User</a></li>
-							<li><a id="create_employee" page="create_employee.html" href="#">Create Employee</a></li>
-							<li><a id="edit_profile" page="edit_employee_profile.html" href="#">Edit Profile</a></li>
-							<li><a id="change_password" page="change_password.html" href="#">Change Password</a></li>
+							<?php if($session_jobtype == "Manager") echo "<li><a id='manage_department' page='employee/manage_department.php' href='#'>Department</a></li>"; ?>
+							<li><a id="create_user" page="admin/create_user.html" href="#">Create User</a></li>
+							<li><a id="create_employee" page="admin/create_employee.html" href="#">Create Employee</a></li>
+							<li><a id="edit_profile" page="employee/edit_employee_profile.html" href="#">Edit Profile</a></li>
+							<li><a id="change_password" page="common/change_password.html" href="#">Change Password</a></li>
 							<li><a id="logout" href="logout.php">Logout</a></li>
 						</ul>
 					</nav>
@@ -44,22 +45,22 @@
 										<section>
 											<div class="col-3 col-6-medium col-12-xsmall">
 												<ul class="actions stacked">
-													<li><a id="list_tickets" page= "list_tickets.php" href="#" class="button fit">List Tickets</a></li>
+													<li><a id="list_tickets" page= "common/list_tickets.php" href="#" class="button fit">List Tickets</a></li>
 												</ul>
 											</div>
 											<div class="col-3 col-6-medium col-12-xsmall">
 												<ul class="actions stacked">
-													<li><a id="list_users" page= "list_users.php" href="#" class="button fit">List User</a></li>
+													<li><a id="list_users" page= "admin/list_users.php" href="#" class="button fit">List User</a></li>
 												</ul>
 											</div>
 											<div class="col-3 col-6-medium col-12-xsmall">
 												<ul class="actions stacked">
-													<li><a id="list_employees" page= "list_employees.php" href="#" class="button fit">List Employees</a></li>
+													<li><a id="list_employees" page= "admin/list_employees.php" href="#" class="button fit">List Employees</a></li>
 												</ul>
 											</div>
 											<div class="col-3 col-6-medium col-12-xsmall">
 												<ul class="actions stacked">
-													<li><a id="list_scooter" page= "list_scooter.php" href="#" class="button fit">List Scooters</a></li>
+													<li><a id="list_scooter" page= "admin/list_scooter.php" href="#" class="button fit">List Scooters</a></li>
 												</ul>
 											</div>
 										</section>
@@ -98,9 +99,9 @@
 
 			<script>
 			$(document).ready(function(){
-				$("#user_profile").load("user_profile.php",function(responseTxt,statusTxt,xhr){
+				$("#user_profile").load("common/user_profile.php",function(responseTxt,statusTxt,xhr){
 			    });
-			    $("#content").load("list_tickets.php",function(responseTxt,statusTxt,xhr){
+			    $("#content").load("common/list_tickets.php",function(responseTxt,statusTxt,xhr){
 		    	});
 			});
 
@@ -110,7 +111,7 @@
 		  	});
 
 			$("#edit_profile").click(function(){
-				$("#content").load("edit_employee_profile.html",function(responseTxt,statusTxt,xhr){
+				$("#content").load("employee/edit_employee_profile.html",function(responseTxt,statusTxt,xhr){
 					$("#firstname").val($("#FirstName").attr("value"));
 					$("#lastname").val($("#LastName").attr("value"));
 					$("#ssn").val($("#SSN").attr("value"));
@@ -128,8 +129,8 @@
 					
 					$("#content").html(responseTxt);
 				});
-				if($(this).closest("form").attr("page")=="edit_profile.php"){
-					$("#user_profile").load("user_profile.php",function(responseTxt,statusTxt,xhr){
+				if($(this).closest("form").attr("page")=="common/edit_profile.php"){
+					$("#user_profile").load("common/user_profile.php",function(responseTxt,statusTxt,xhr){
 			    	});
 			    }
 			});

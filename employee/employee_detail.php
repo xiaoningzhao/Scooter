@@ -1,8 +1,9 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <h3>Employee Detail</h3>
 <?php
 
-	include 'session.php';
-	include 'db_connect.php';
+	include '../util/session.php';
+	include '../util/db_connect.php';
 
 	extract($_POST);
 
@@ -35,7 +36,7 @@
 
 	$result = getResult($query);
 	if ($result->num_rows > 0) {
-		echo "<form page='update_employee.php'><div class='row gtr-uniform gtr-50'>";
+		echo "<form page='employee/update_employee.php'><div class='row gtr-uniform gtr-50'>";
 		while($row = $result->fetch_assoc()) {
 			foreach($row as $key => $value){
 				if($key=="EmployeeID" || $key=="EmployeeName"){

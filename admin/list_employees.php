@@ -1,10 +1,11 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <h3>Employees</h3>
 <div class="table-wrapper">
 <table id="employees" page="">
 <?php
 
-	include 'session.php';
-	include 'db_connect.php';
+	include '../util/session.php';
+	include '../util/db_connect.php';
 		
 	$query = "select e.e_id as EmployeeID, concat(e.e_fname,', ' ,e.e_lname) as EmployeeName, e.e_ssn as SSN, e.address as Address, e.e_gender as Gender, e.birthday as Birthday, e.job_type as JobType, department.d_id as Department
 			from employee e 

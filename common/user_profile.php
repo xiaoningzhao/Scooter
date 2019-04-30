@@ -1,7 +1,8 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <h3>User Profile</h3>
 <?php 
-	include 'session.php';
-	include 'db_connect.php';
+	include '../util/session.php';
+	include '../util/db_connect.php';
 
 	if($session_logintype== "User"){
 		$query = "select c_id as UserID, c_name as UserName, phone as Phone, email as Email from customer where c_id = '".$session_userid."'";

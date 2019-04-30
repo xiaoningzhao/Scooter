@@ -1,6 +1,7 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <?php
-	include 'session.php';
-	include 'db_connect.php';
+	include '../util/session.php';
+	include '../util/db_connect.php';
 
 	$query = "select t_issue code, t_issue_description issue from ticket_issue_code";
 
@@ -8,7 +9,7 @@
 ?>
 
 <h3>Create Ticket</h3>
-<form method="post" page="create_ticket.php">
+<form method="post" page="user/create_ticket.php">
 	<div class="row gtr-uniform gtr-50">
 		<div class="col-4 col-12-xsmall">
 			<b>Scooter ID</b><input type="text" name="scooter_id" id="scooter_id" value="" placeholder="Scooter ID" required/>

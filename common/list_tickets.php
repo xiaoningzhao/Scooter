@@ -1,10 +1,11 @@
+<!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <h3>Tickets</h3>
 <div class="table-wrapper">
-<table id="tickets" page="ticket_detail.php">
+<table id="tickets" page="common/ticket_detail.php">
 <?php
 
-	include 'session.php';
-	include 'db_connect.php';
+	include '../util/session.php';
+	include '../util/db_connect.php';
 
 
 	if($session_logintype== "User"){
