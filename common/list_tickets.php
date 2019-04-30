@@ -6,7 +6,7 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
-
+	include '../util/loghelper.php';
 
 	if($session_logintype== "User"){
 		
@@ -58,6 +58,8 @@
 					join ticket_issue_code issue on issue.t_issue = t.t_issue 
 					order by t.t_status";
 	}
+
+	$logger->info("User-".$session_userid." list tickets SQL: ".$query);
 
 	$result = getResult($query);
 	if ($result->num_rows > 0) {

@@ -6,9 +6,11 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
-
+	include '../util/loghelper.php';
 
 	$query = "select s_id as ScooterID, s_status_code as Status, s_model as Model, location as Location from scooter";
+
+	$logger->info("User-".$session_userid." List scooters SQL: ".$query);
 
 	$result = getResult($query);
 	if ($result->num_rows > 0) {

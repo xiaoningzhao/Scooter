@@ -1,6 +1,9 @@
 <!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <?php
 	include 'util/session.php';
+	include_once('log/Logger.php');
+	Logger::configure('log_config.xml');
+	$logger = Logger::getRootLogger();
 ?>
 
 <!DOCTYPE HTML>

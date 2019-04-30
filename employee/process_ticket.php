@@ -2,6 +2,7 @@
 <?php
 
 	include '../util/session.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 
@@ -33,6 +34,7 @@
 					HAVING count(t.t_id) < delivery.capacity
 					ORDER BY count(t.t_id) ASC";
 
+		$logger->info("User-".$session_userid." process ticket - query available employee SQL: ".$query_employee);
 
 		$result = $conn->query($query_employee);
 		$employee = "";
@@ -46,21 +48,33 @@
 			$query_update = "UPDATE ticket SET t_status = '10000', e_id = (SELECT e_id from employee where job_type = 'Manager' and d_id = 'd0002'), t_issue = '$Issue', t_message = '$Message', d_id = 'd0002' WHERE t_id ='$TicketID'";
 		}
 
+		$logger->info("User-".$session_userid." process ticket - update ticket SQL: ".$query_update);
+
 		$result = $conn->query($query_update);
 
 		$query_insert_history = "INSERT INTO ticket_history (t_id, e_id, operation_type, logtime) VALUES ('$TicketID', '$session_userid', 'verify', now())";
+
+		$logger->info("User-".$session_userid." process ticket - insert history SQL: ".$query_insert_history);
 
 		$resulthistory = $conn->query($query_insert_history);
 
 		$query_scooter = "UPDATE scooter SET s_status_code = 'Issue' where s_id = '$ScooterID'";
 
+		$logger->info("User-".$session_userid." process ticket - update scooter SQL: ".$query_scooter);
+
 		$resultscooter = $conn->query($query_scooter);
 
 		if ($result===true && $resulthistory===true && $resultscooter===true) {
 			$conn->commit();
+
+			$logger->info("User-".$session_userid." process ticket successful");
+
 			echo "<header class='major'><h2>Process Successful!<h2></header>";
 		}else{
 			$conn->rollback();
+
+			$logger->error("User-".$session_userid." process ticket failed: ".$conn->error);
+
 			echo "<header class='major'><h2>Process Failed!</h2></header>";
 		}
 		$conn->autocommit(TRUE);
@@ -78,6 +92,9 @@
 					GROUP BY e.e_id, technician.workload
 					HAVING count(t.t_id) < technician.workload
 					ORDER BY count(t.t_id) ASC";
+		
+		$logger->info("User-".$session_userid." process ticket - query available employee SQL: ".$query_employee);
+
 		$result = $conn->query($query_employee);
 		$employee = "";
 		if ($result->num_rows > 0){
@@ -90,17 +107,27 @@
 			$query_update = "UPDATE ticket SET t_status = '20000', e_id = (SELECT e_id from employee where job_type = 'Manager' and d_id = 'd0003'), t_issue = '$Issue', t_message = '$Message', d_id = 'd0003' WHERE t_id ='$TicketID'";
 		}
 
+		$logger->info("User-".$session_userid." process ticket - update ticket SQL: ".$query_update);
+
 		$result = $conn->query($query_update);
 
 		$query_insert_history = "INSERT INTO ticket_history (t_id, e_id, operation_type, logtime) VALUES ('$TicketID', '$session_userid', 'deliver', now())";
+
+		$logger->info("User-".$session_userid." process ticket - insert history SQL: ".$query_insert_history);
 
 		$resulthistory = $conn->query($query_insert_history);
 
 		if ($result===true && $resulthistory===true) {
 			$conn->commit();
+
+			$logger->info("User-".$session_userid." process ticket successful");
+
 			echo "<header class='major'><h2>Process Successful!<h2></header>";
 		}else{
 			$conn->rollback();
+
+			$logger->error("User-".$session_userid." process ticket failed: ".$conn->error);
+
 			echo "<header class='major'><h2>Process Failed!</h2></header>";
 		}
 		$conn->autocommit(TRUE);
@@ -118,6 +145,9 @@
 					GROUP BY e.e_id, delivery.capacity
 					HAVING count(t.t_id) < delivery.capacity
 					ORDER BY count(t.t_id) ASC";
+
+		$logger->info("User-".$session_userid." process ticket - query available employee SQL: ".$query_employee);
+
 		$result = $conn->query($query_employee);
 		$employee = "";
 		if ($result->num_rows > 0){
@@ -130,17 +160,27 @@
 			$query_update = "UPDATE ticket SET t_status = '30000', e_id = (SELECT e_id from employee where job_type = 'Manager' and d_id = 'd0002'), t_issue = '$Issue', t_message = '$Message', d_id = 'd0002' WHERE t_id ='$TicketID'";
 		}
 
+		$logger->info("User-".$session_userid." process ticket - update ticket SQL: ".$query_update);
+
 		$result = $conn->query($query_update);
 
 		$query_insert_history = "INSERT INTO ticket_history (t_id, e_id, operation_type, logtime) VALUES ('$TicketID', '$session_userid', 'maintain', now())";
+
+		$logger->info("User-".$session_userid." process ticket - insert history SQL: ".$query_insert_history);
 
 		$resulthistory = $conn->query($query_insert_history);
 
 		if ($result===true && $resulthistory===true) {
 			$conn->commit();
+
+			$logger->info("User-".$session_userid." process ticket successful");
+
 			echo "<header class='major'><h2>Process Successful!<h2></header>";
 		}else{
 			$conn->rollback();
+
+			$logger->error("User-".$session_userid." process ticket failed: ".$conn->error);
+
 			echo "<header class='major'><h2>Process Failed!</h2></header>";
 		}
 		$conn->autocommit(TRUE);

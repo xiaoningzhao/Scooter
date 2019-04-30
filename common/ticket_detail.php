@@ -4,6 +4,7 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 
@@ -16,7 +17,10 @@
 				join ticket_status_code status on status.t_status = t.t_status 
 				where t.t_id ='$uid'";
 	$ticket_status ="";
-	$scooter_id = "";	
+	$scooter_id = "";
+
+	$logger->info("User-".$session_userid." ticket detail SQL: ".$query);
+
 	$result = getResult($query);
 	if ($result->num_rows > 0) {
 		echo "<form page='employee/process_ticket.php'><div class='row gtr-uniform gtr-50'>";

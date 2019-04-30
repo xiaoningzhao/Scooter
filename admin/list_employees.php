@@ -6,10 +6,13 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
+	include '../util/loghelper.php';
 		
 	$query = "select e.e_id as EmployeeID, concat(e.e_fname,', ' ,e.e_lname) as EmployeeName, e.e_ssn as SSN, e.address as Address, e.e_gender as Gender, e.birthday as Birthday, e.job_type as JobType, department.d_id as Department
 			from employee e 
 			left join department on department.d_id = e.d_id";
+
+	$logger->info("User-".$session_userid." List employees SQL: ".$query);
 
 	$result = getResult($query);
 	if ($result->num_rows > 0) {

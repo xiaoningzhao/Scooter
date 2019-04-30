@@ -3,6 +3,7 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 
@@ -14,10 +15,17 @@
 		$query = "UPDATE employee SET e_fname = '$firstname', e_lname = '$lastname', e_ssn = '$ssn', address = '$address', e_gender = '$gender', birthday = '$birthday' WHERE (e_id = '$session_userid')";
 	}
 
+	$logger->info("User-".$session_userid." edit profile SQL: ".$query);
+
 	$result = getResult($query);
 	if ($result===true) {
+		$logger->info("User-".$session_userid." edit profile successful");
+
 		echo "<h2>Update Successful!</h2>";
 	}else{
+
+		$logger->error("User-".$session_userid." edit profile failed");
+
 		echo "<h2>Update Failed!</h2>";
 	}
 

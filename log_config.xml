@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns="http://logging.apache.org/log4php/">
+
+    <appender name="TestFileAppender" class="LoggerAppenderFile">
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date [%logger] %message%newline" />
+        </layout>
+        <param name="file" value="../logs/event.log" />
+    </appender>
+
+    <root>
+        <level value="DEBUG" />
+        <appender_ref ref="TestFileAppender" />
+    </root>
+</configuration>

@@ -3,6 +3,7 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 
@@ -14,6 +15,8 @@
 		$query = "SELECT e_password from employee  where e_id = '$session_userid' and e_password = '".md5($old_password)."'";
 	}
 
+	$logger->info("User-".$session_userid." change password - verify SQL: ".$query);
+
 	$result = getResult($query);
 	if ($result->num_rows > 0) {
 
@@ -24,13 +27,25 @@
 		}else if ($session_logintype== "Admin"){
 			$query = "UPDATE employee SET e_password = md5('$new_password') where e_id = '$session_userid'";
 		}
+
+		$logger->info("User-".$session_userid." change password SQL: ".$query);
+
 		$result = getResult($query);
 		if ($result===true) {
+
+			$logger->info("User-".$session_userid." change password successful");
+
 			echo "<h2>Update Successful!</h2>";
 		}else{
+
+			$logger->error("User-".$session_userid." change password failed");
+
 			echo "<h2>Update Failed!</h2>";
 		}
 	}else{
+
+		$logger->info("User-".$session_userid." change password - verify failed");
+
 		echo "<h2>Update Failed! Old password does not match!</h2>";
 	}
 

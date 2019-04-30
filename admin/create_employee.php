@@ -1,6 +1,7 @@
 <!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <?php
 	include '../util/session.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 	
@@ -26,6 +27,8 @@
 		$query = "INSERT INTO employee VALUES ('$employee_id',MD5('$password'),'$firstname','$lastname','$ssn','$address','$gender','$birthday','$jobtype','$department')";
 	}
 
+	$logger->info("User-".$session_userid." Create employee SQL: ".$query);
+
 	$query_department = "";
 	if($department=="d0001"){
 		$query_department = "INSERT INTO field_operation VALUES ('$employee_id','Region_A',5)";
@@ -35,6 +38,8 @@
 		$query_department = "INSERT INTO technician VALUES ('$employee_id','00000',5)";
 	}
 
+	$logger->info("User-".$session_userid." Create employee SQL: ".$query_department);
+
 	$conn->autocommit(FALSE);
 
 	$result = $conn->query($query);
@@ -43,9 +48,15 @@
 
 	if ($result==true && $query_department==true) {
 		$conn->commit();
+
+		$logger->info("User-".$session_userid." Create employee successful");
+
 		echo "<header class='major'><h2>Create Employee Successful!<h2></header>";
 	}else{
 		$conn->rollback();
+
+		$logger->error("User-".$session_userid." Create employee failed: ".$conn->error);
+
 		echo "<header class='major'><h2>Create Employee Failed! ".$conn->error."</h2></header>";
 	}
 	$conn->autocommit(TRUE);

@@ -3,6 +3,7 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 
@@ -21,11 +22,19 @@
 
 	}
 
+	$logger->info("User-".$session_userid." update employee SQL: ".$query);
+
 	$result = getResult($query);
 
 	if ($result===true) {
+
+		$logger->info("User-".$session_userid." update employee successful");
+
 		echo "<header class='major'><h2>Update Successful!<h2></header>";
 	}else{
+
+		$logger->error("User-".$session_userid." update employee failed");
+
 		echo "<header class='major'><h2>Update Failed!</h2></header>";
 	}
 

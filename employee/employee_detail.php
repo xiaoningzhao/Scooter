@@ -4,6 +4,7 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 
@@ -33,6 +34,8 @@
 					join technician on e.e_id = technician.e_id 
 					where e.e_id = '$uid'";
 	}
+
+	$logger->info("User-".$session_userid." employee detail SQL: ".$query);
 
 	$result = getResult($query);
 	if ($result->num_rows > 0) {

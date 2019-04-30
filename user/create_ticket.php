@@ -2,6 +2,7 @@
 <?php
 
 	include '../util/session.php';
+	include '../util/loghelper.php';
 
 	extract($_POST);
 
@@ -32,6 +33,9 @@
 				GROUP BY e.e_id, f.workload
 				HAVING count(t.t_id) < f.workload
 				ORDER BY count(t.t_id) ASC";
+	
+	$logger->info("User-".$session_userid." create ticket - query available employee SQL: ".$query);
+
 	$result = $conn->query($query);
 	$employee = "";
 	if ($result->num_rows > 0){
@@ -45,13 +49,21 @@
 		$query = "INSERT INTO ticket (t_status, t_issue, t_message, e_id, d_id, s_id, c_id, created_date, created_time) VALUES ('00000', '$issue', '$message', (SELECT e_id from employee where job_type = 'Manager' and d_id = 'd0001'),'d0001', '$scooter_id', '$session_userid', curdate(), curtime())";
 	}
 
+	$logger->info("User-".$session_userid." create ticket - insert ticket SQL: ".$query);
+
 	$result = $conn->query($query);
 
 	if ($result===true) {
 		$conn->commit();
+
+		$logger->info("User-".$session_userid." create ticket successful");
+
 		echo "<header class='major'><h2>Create Successful!<h2></header>";
 	}else{
 		$conn->rollback();
+
+		$logger->error("User-".$session_userid." create ticket failed: ".$conn->error);
+
 		echo "<header class='major'><h2>Create Failed!</h2></header>";
 	}
 	$conn->autocommit(TRUE);

@@ -6,9 +6,11 @@
 
 	include '../util/session.php';
 	include '../util/db_connect.php';
-
+	include '../util/loghelper.php';
 
 	$query = "select c_id as UserID, c_name as Name, phone as Phone, email as Email from customer";
+
+	$logger->info("User-".$session_userid." List users SQL: ".$query);
 
 	$result = getResult($query);
 	if ($result->num_rows > 0) {

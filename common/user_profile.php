@@ -3,6 +3,7 @@
 <?php 
 	include '../util/session.php';
 	include '../util/db_connect.php';
+	include '../util/loghelper.php';
 
 	if($session_logintype== "User"){
 		$query = "select c_id as UserID, c_name as UserName, phone as Phone, email as Email from customer where c_id = '".$session_userid."'";
@@ -27,6 +28,9 @@
 	}else if ($session_logintype== "Admin"){
 		$query = "SELECT e.e_id as EmployeeID, e.e_fname as FirstName, e.e_lname as LastName, e.e_ssn as SSN, e.address as Address, e.e_gender as Gender, e.birthday as Birthday, e.Job_type as Type, d.d_name as Department FROM employee e join department d on e.d_id = d.d_id where e.job_type ='Admin' and e.e_id = '$session_userid'";
 	}
+
+	$logger->info("User-".$session_userid." user profile SQL: ".$query);
+
 	$result = getResult($query);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {

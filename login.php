@@ -1,4 +1,5 @@
 <!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
+<?php session_start();?>
 <!DOCTYPE HTML>
 
 <html>
@@ -20,6 +21,7 @@
 					<div class="container">
 <?php
 	include 'util/db_connect.php';
+
 	extract($_POST);
 
 	switch ($loginType) {
@@ -46,7 +48,6 @@
 	if ($result->num_rows > 0) {
 		$row = $result->fetch_assoc();
 
-		session_start();
 	    $_SESSION["session_login"] = true;
 	    $_SESSION["session_logintype"] = $loginType;
 	    $_SESSION["session_userid"] = $row['id'];
@@ -54,11 +55,11 @@
 	    $_SESSION["session_jobtype"] = $row['job_type'];
    	    $_SESSION["session_department"] = $row['department'];
 
-
  		echo "<header class='major'><h2>Welcome ".$_SESSION["session_name"]."! Login Successful.</h2></header>";
  		header("Refresh:1;url=$page");
 
 	}else{
+
 		echo "<header class='major'><h2>Login Failed.</h2></header>";
 		header("Refresh:1;url=index.html");
 	}
