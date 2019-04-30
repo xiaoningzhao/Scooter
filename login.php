@@ -43,7 +43,7 @@
 			break;
 	}
 
-	$result = getResult($query);
+	$result = getResult_root($query);
 
 	if ($result->num_rows > 0) {
 		$row = $result->fetch_assoc();
