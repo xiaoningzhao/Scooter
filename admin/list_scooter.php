@@ -1,7 +1,7 @@
 <!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <h3>Scooter</h3>
 <div class="table-wrapper">
-<table id="scooters" page="">
+<table id="scooters" page="admin/edit_scooter.php">
 <?php
 
 	include '../util/session.php';

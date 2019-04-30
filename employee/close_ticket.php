@@ -49,7 +49,7 @@
 	}else{
 		$conn->rollback();
 
-		$logger->error("User-".$session_userid." change password failed: ".$conn->error);
+		$logger->error("User-".$session_userid." close ticket failed: ".$conn->error);
 
 		echo "<h2>Close Failed!</h2>";
 	}

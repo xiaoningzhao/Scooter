@@ -1,7 +1,7 @@
 <!-- SJSU CMPE 180B Spring 2019 TEAM4 -->
 <h3>Users</h3>
 <div class="table-wrapper">
-<table id="users" page="">
+<table id="users" page="admin/edit_user.php">
 <?php
 
 	include '../util/session.php';
